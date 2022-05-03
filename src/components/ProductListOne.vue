@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   // computed re-renders based on state changes
   // in computed, create a method that returns the products array
@@ -29,17 +30,20 @@ export default {
     //   });
     //   return saleProducts;
     // },
-    saleProducts() {
-      return this.$store.getters.saleProducts;
-    },
+    // saleProducts() {
+    //   return this.$store.getters.saleProducts;
+    // },
+    // if there were several getters it would look like this: ...mapGetters(['saleProducts', 'saleProducts2', 'saleProducts3'])
+    ...mapGetters(['saleProducts']),
   },
   //   the method below works to reduce the price, but it is not tracked, which makes it difficult to debug. Instead, it is better to use mutations in the store.
   // when using async actions, use dispatch instead of commit
   methods: {
-    reducePrice: function (amount) {
-      // amount is the payload, which gets passed to actions in the store, which in turn passes it to mutations in the store
-      this.$store.dispatch('reducePrice', amount);
-    },
+    // reducePrice: function (amount) {
+    //   // amount is the payload, which gets passed to actions in the store, which in turn passes it to mutations in the store
+    //   this.$store.dispatch('reducePrice', amount);
+    // },
+    ...mapActions(['reducePrice']),
   },
 };
 </script>

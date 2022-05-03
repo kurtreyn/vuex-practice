@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   // computed re-renders based on state changes
   // in computed, create a method that returns the products array
@@ -19,14 +20,10 @@ export default {
     products() {
       return this.$store.state.products;
     },
-    saleProducts() {
-      return this.$store.getters.saleProducts;
-    },
+    ...mapGetters(['saleProducts']),
   },
   methods: {
-    reducePrice: function () {
-      this.$store.dispatch('reducePrice');
-    },
+    ...mapActions(['reducePrice']),
   },
 };
 </script>
