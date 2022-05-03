@@ -7,7 +7,7 @@
         <span class="price">${{ product.price }}</span>
       </li>
     </ul>
-    <button v-on:click="reducePrice">Reduce Price</button>
+    <button v-on:click="reducePrice(4)">Reduce Price</button>
   </div>
 </template>
 
@@ -34,12 +34,11 @@ export default {
     },
   },
   //   the method below works to reduce the price, but it is not tracked, which makes it difficult to debug. Instead, it is better to use mutations in the store.
+  // when using async actions, use dispatch instead of commit
   methods: {
-    reducePrice: function () {
-      //   this.$store.state.products.forEach((product) => {
-      //     product.price -= 1;
-      //   });
-      this.$store.commit('reducePrice');
+    reducePrice: function (amount) {
+      // amount is the payload, which gets passed to actions in the store, which in turn passes it to mutations in the store
+      this.$store.dispatch('reducePrice', amount);
     },
   },
 };

@@ -21,12 +21,28 @@ export default createStore({
     },
   },
   mutations: {
-    reducePrice: (state) => {
+    // added a timeout delay to simulate fetching data from a server
+    // async functions should not go in mutations, they should go in actions
+    // reducePrice: (state) => {
+    //   setTimeout(() => {
+    //     state.products.forEach((product) => {
+    //       product.price -= 1;
+    //     });
+    //   }, 3000);
+    // },
+    reducePrice: (state, payload) => {
       state.products.forEach((product) => {
-        product.price -= 1;
+        product.price -= payload;
       });
     },
   },
-  actions: {},
+  actions: {
+    // async tasks go here
+    reducePrice: (context, payload) => {
+      setTimeout(() => {
+        context.commit('reducePrice', payload);
+      }, 2000);
+    },
+  },
   modules: {},
 });
