@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  // accept the products prop from the parent component
   props: ['products'],
   data() {
     return {};

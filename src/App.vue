@@ -1,4 +1,5 @@
 <template>
+  <!-- bind data to props -->
   <ProductListOne :products="products" />
   <ProductListTwo :products="products" />
 </template>
