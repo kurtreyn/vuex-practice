@@ -2,9 +2,9 @@
   <div id="product-list-one">
     <h2>Product List One</h2>
     <ul>
-      <li v-for="product in products">
+      <li v-for="(product, i) in saleProducts" :key="i">
         <span class="name">{{ product.name }}</span>
-        <span class="price">£{{ product.price }}</span>
+        <span class="price">${{ product.price }}</span>
       </li>
     </ul>
   </div>
@@ -12,9 +12,25 @@
 
 <script>
 export default {
-  props: ['products'],
-  data() {
-    return {};
+  // computed re-renders based on state changes
+  // in computed, create a method that returns the products array
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+    // making a new computed property works to maniupulate the state data, but it only works on the products in ProductListOne. This method would have to be copied to ProductListTwo for it to work there. Which is against the DRY principle. Instead of doing this, we can make a getter in the store.
+    // saleProducts() {
+    //   let saleProducts = this.$store.state.products.map((product) => {
+    //     return {
+    //       name: '**' + product.name + '**',
+    //       price: product.price / 2,
+    //     };
+    //   });
+    //   return saleProducts;
+    // },
+    saleProducts() {
+      return this.$store.getters.saleProducts;
+    },
   },
 };
 </script>

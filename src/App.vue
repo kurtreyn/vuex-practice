@@ -1,7 +1,7 @@
 <template>
-  <!-- bind data to props -->
-  <ProductListOne :products="products" />
-  <ProductListTwo :products="products" />
+  <!-- do not have to bind data to props since state was moved to store -->
+  <ProductListOne />
+  <ProductListTwo />
 </template>
 
 <script>
@@ -14,14 +14,7 @@ export default {
   },
   name: 'App',
   data() {
-    return {
-      products: [
-        { name: 'Banana Skin', price: 20 },
-        { name: 'Shiny Star', price: 40 },
-        { name: 'Green Shells', price: 60 },
-        { name: 'Red Shells', price: 80 },
-      ],
-    };
+    return {};
   },
 };
 </script>

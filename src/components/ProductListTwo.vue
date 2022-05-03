@@ -2,9 +2,9 @@
   <div id="product-list-two">
     <h2>Product List Two</h2>
     <ul>
-      <li v-for="product in products">
+      <li v-for="(product, i) in products" :key="i">
         <span class="name">{{ product.name }}</span>
-        <span class="price">£{{ product.price }}</span>
+        <span class="price">${{ product.price }}</span>
       </li>
     </ul>
   </div>
@@ -12,10 +12,15 @@
 
 <script>
 export default {
-  // accept the products prop from the parent component
-  props: ['products'],
-  data() {
-    return {};
+  // computed re-renders based on state changes
+  // in computed, create a method that returns the products array
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+    saleProducts() {
+      return this.$store.getters.saleProducts;
+    },
   },
 };
 </script>
